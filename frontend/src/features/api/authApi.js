@@ -9,6 +9,7 @@ export const authApi = createApi({
         credentials: 'include'
     }),
     endpoints: (builder) => ({
+
         registerUser: builder.mutation({
             query: (inputData) => ({
                 url: "register",
@@ -26,7 +27,7 @@ export const authApi = createApi({
             async onQueryStarted(args, {queryFullfilled, dispatch}){
                 try {
                     const result = await queryFullfilled;
-                    dispatch(userLoggedIn({user : result.data.user}))
+                    dispatch(userLoggedIn({user : result.data?.user}))
                 } catch (error) {
                     console.log(error);
                     
@@ -38,8 +39,21 @@ export const authApi = createApi({
                 url:"profile",
                 method: "GET"
             })
+        }),
+
+        updateUser: builder.mutation({
+            query: (formData) => ({
+                url: "/profile-update",
+                method: "PUT",
+                body: "formData",
+            })
         })
     })
 })
 
-export const {useRegisterUserMutation, useLoginUserMutation, useLoadUserQuery} = authApi
+export const {
+    useRegisterUserMutation,
+    useLoginUserMutation, 
+    useLoadUserQuery, 
+    useUpdateUserMutation
+} = authApi

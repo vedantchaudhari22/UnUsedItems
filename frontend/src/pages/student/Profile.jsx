@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Loader2 } from 'lucide-react'
 import Course from './Course'
-import { useLoadUserQuery } from '@/features/api/authApi'
+import { useLoadUserQuery, useUpdateUserMutation } from '@/features/api/authApi'
 
 
 const Profile = () => {
@@ -16,8 +16,9 @@ const Profile = () => {
   // const enrolledCourses = [
   //   1, 2
   // ]
-
-  const {data, isLoading} = useLoadUserQuery();
+  
+  const {data, isLoading} = useLoadUserQuery();  //{} these braces are used for GET request in RTK
+  const [updateUser] = useUpdateUserMutation(); //[] these braces are used for POST/PUT req in RTK
   console.log(data);
   
   if(isLoading) return <h1>Profile Loading...</h1>
