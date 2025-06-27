@@ -26,7 +26,7 @@ export const authApi = createApi({
             }),
             async onQueryStarted(args, {queryFullfilled, dispatch}){
                 try {
-                    const result = await queryFullfilled;
+                    const { result } = await queryFullfilled;
                     dispatch(userLoggedIn({user : result.data?.user}))
                 } catch (error) {
                     console.log(error);
@@ -45,7 +45,7 @@ export const authApi = createApi({
             query: (formData) => ({
                 url: "/profile-update",
                 method: "PUT",
-                body: "formData",
+                body: formData,
             })
         })
     })

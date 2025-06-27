@@ -1,6 +1,6 @@
 import {v2 as cloudinary} from 'cloudinary';
 import dotenv from 'dotenv';
-import upload from './multer';
+//import upload from './multer';
 dotenv.config({});
 
 cloudinary.config({
@@ -22,7 +22,7 @@ export const uploadMedia = async (file) => {
     }
 }
 
-export const deleteMedia = async (publicId) => {
+export const deleteMediaFromCloudinary = async (publicId) => {
     try {
         await cloudinary.uploader.destroy(publicId);
     } catch (error) {
